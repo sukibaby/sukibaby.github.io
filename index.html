@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>sukibaby :D</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            background: #63cee0;
+        }
+
+        #square {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(0deg);
+            will-change: transform, width, height;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="square">
+        <header style="padding:1rem;text-align:center;">
+            <h1 style="margin:0;color:wheat;">sukibaby :D</h1>
+            <h2>StepMania related projects</h2>
+        </header>
+        <ul>
+            <li><a href="https://sukibaby.github.io/pack-ini-generator/">Pack.ini
+                    Generator</a> is a web tool to help
+                you generate <span style="font-family:monospace;">pack.ini</span> files for
+                ITGmania.</li>
+            <li><a href="https://github.com/sukibaby/simfile-tool">Simfile
+                    Tool</a> is a command-line tool for managing
+                StepMania simfiles. It requires <a
+                    href="https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell">PowerShell</a>
+                to be installed.</li>
+        </ul>
+    </div>
+    <script>
+        const squareElement = document.getElementById('square');
+
+        function resizeSquare() {
+            const size = Math.min(window.innerWidth, window.innerHeight) / 2;
+            squareElement.style.width = size + 'px';
+            squareElement.style.height = size + 'px';
+        }
+
+        // Debounce function to limit how often resizeSquare runs
+        function debounce(func, wait) {
+            let timeout;
+            return function () {
+                clearTimeout(timeout);
+                timeout = setTimeout(func, wait);
+            };
+        }
+
+        window.addEventListener('resize', debounce(resizeSquare, 100));
+        resizeSquare();
+
+        let angle = 0;
+        let square_velocity = 0.01;
+        let angularAcceleration = 0.00001;
+        const drag = 0.995;
+
+        function animate() {
+            const base_accel = Math.sqrt(Math.sin(angularAcceleration)) / Math.PI ** 10;
+            const drag_accel = Math.tan(angularAcceleration) * drag;
+            square_velocity += base_accel + drag_accel;
+            square_velocity *= drag;
+            angle = (angle + square_velocity) % (4 * Math.PI);
+
+            const baseSize = Math.min(window.innerWidth, window.innerHeight) * 0.5;
+            const dynamicComponent = Math.sin(5 * angle) * 2 + angle;
+            let finalSize = baseSize + dynamicComponent * 10;
+            finalSize = Math.min(angle * 250, finalSize);
+
+            squareElement.style.width = finalSize + 'px';
+            squareElement.style.height = finalSize + 'px';
+
+            const hue = (angle / (2 * Math.PI)) * 360;
+            squareElement.style.background = `hsl(${hue},100%,50%)`;
+            squareElement.style.transform = `translate(-50%,-50%) rotate(${angle}rad)`;
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+
+</html>
