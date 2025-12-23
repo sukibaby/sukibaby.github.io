@@ -1,13 +1,7 @@
 #!/bin/sh
 
-# this is a script that installs ITG(tm) on your fancy fancy Linux computer
-# it will install the necessary dependencies and then build and install the
-# current beta of In The Gmania
-# it will also set up the latest version of the AC theme (for now) but later this will be more flexible
 set -e
 
-# we are going to store the game in the home directory.
-# and its gonna be called itgmania :star_struck:
 REPO_DIR="$HOME/itgmania"
 
 echo "Howdy partner :] Just gonna get itgmania set up over here :]"
@@ -18,12 +12,12 @@ echo "Howdy partner :] Just gonna get itgmania set up over here :]"
 #
 #
 if command -v apt >/dev/null 2>&1; then
-    echo "Found apt :O"
+    echo "Found apt :D"
     
     sudo apt update
     sudo apt upgrade -y
     sudo apt install -y build-essential
-    sudo apt install -y git cmake libasound2-dev libgl-dev libglu1-mesa-dev libgtk-3-dev libjack-dev libmad0-dev libpulse-dev libudev-dev libxinerama-dev libx11-dev libxrandr-dev libxtst-dev nasm
+    sudo apt install -y git cmake libasound2-dev libgl-dev libglu1-mesa-dev libgtk-3-dev libjack-dev libmad0-dev libpulse-dev libudev-dev libxinerama-dev libx11-dev libxrandr-dev libxtst-dev nasm unzip
     
     echo "Packages installed successfully via apt!"
 
@@ -36,7 +30,7 @@ elif command -v pacman >/dev/null 2>&1; then
 
 else
     echo "ERROR: Couldn't find either apt or pacman!"
-    echo "This script currently only supports Debian/Ubuntu and Arch-based distributions."
+    echo "This script currently only supports Debian/Ubuntu and Arch-based distributions, such as Linux Mint, Ubuntu, Pop_OS, EndeavourOS, among others"
     
     exit 1
 fi
@@ -121,6 +115,7 @@ To run ITGmania you can open any terminal and type
 and the game will start.
 
 IMPORTANT NOTE
+(Unless you are using Linux Mint, in which case this warning doesn't apply)
 ITGmania does not suport Wayland yet
 You may have to log in as X11 for the keyboard to work in full screen
 
