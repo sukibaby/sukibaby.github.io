@@ -91,7 +91,7 @@ if [[ -d "$REPO_DIR" ]]; then
 else
     echo "Cloning repository..."
     # shallow clone to save space and reduce initial network usage
-    git clone --branch beta --single-branch --depth 1 https://github.com/itgmania/itgmania.git "$REPO_DIR"
+    git clone --branch release --single-branch --depth 1 https://github.com/itgmania/itgmania.git "$REPO_DIR"
 fi
 
 # enter repo
