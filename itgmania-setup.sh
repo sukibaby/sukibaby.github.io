@@ -154,18 +154,12 @@ cat << 'EOF'
 ITGMANIA IS READY TO GO!!!
 Arrow Cloud zmod is installed also
  (you will need to switch the theme manually
-  on your first run of the game.)
+  on your first run of the game if you want it.)
 
 To run ITGmania you can open any terminal and type
 
  itgmania/itgmania
 
 and the game will start.
-
-IMPORTANT NOTE
-(Unless you are using Linux Mint, in which case this warning doesn't apply)
-ITGmania does not suport Wayland yet
-You may have to log in as X11 for the keyboard to work in full screen
-
 
 EOF
