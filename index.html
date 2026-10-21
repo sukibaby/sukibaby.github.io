@@ -97,6 +97,8 @@
     const fontName = document.querySelector('#fontName');
     const baseName = document.querySelector('#baseName');
     const save = document.querySelector('#save');
+	let backgroundUrl = './confetti.jpg';
+	document.body.style.backgroundImage = `url("${backgroundUrl}")`;
 
     function updateSave() {
       save.disabled = !fontFile.files.length || !baseName.value.trim();
@@ -117,6 +119,9 @@
       document.querySelector('#padding').value = 2;
       document.querySelector('#top').value = 0;
       document.querySelector('#baseline').value = 0;
+      if (backgroundUrl) URL.revokeObjectURL(backgroundUrl);
+      backgroundUrl = undefined;
+      document.body.style.backgroundImage = '';
       fontName.textContent = 'No file selected';
       updateSave();
     });
